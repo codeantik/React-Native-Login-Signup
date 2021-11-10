@@ -1,0 +1,12 @@
+POST https://node-auth-server.herokuapp.com/users/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test",
+    "email": "tesfasdfasdfasft@gmail.com",
+    "password": "test"
+}
+
+###
+
+GET https://node-auth-server.herokuapp.com/users
