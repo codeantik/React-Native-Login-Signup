@@ -10,7 +10,7 @@ export default function Home({ route, navigation }) {
   return (
     <View style={styles.homeContainer}>
       <Post navigation={navigation} />
-      <Comment />
+      <Comment navigation={navigation} />
     </View>
   );
 }

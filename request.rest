@@ -1,4 +1,4 @@
-POST https://node-auth-server.herokuapp.com/users/register HTTP/1.1
+POST http://192.168.43.254:5000/users/register HTTP/1.1
 content-type: application/json
 
 {
@@ -9,4 +9,9 @@ content-type: application/json
 
 ###
 
-GET https://node-auth-server.herokuapp.com/users
+GET http://192.168.43.254:5000/users
+
+
+###
+
+GET http://192.168.43.254:5000/users/usersList

@@ -27,7 +27,7 @@ export default function Signup({ route, navigation}) {
                 visibilityTime: 3000
             })
         }
-        const url = 'https://node-auth-server.herokuapp.com/users/login'
+        const url = 'http://192.168.43.254:5000/users/login '
         await axios.post(url, credentials, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +43,9 @@ export default function Signup({ route, navigation}) {
                     text2: 'Welcome back',
                     visibilityTime: 3000,
                 })
-                navigation.navigate('Home')
+                setTimeout(() => {
+                    navigation.navigate('Home')
+                }, 2000)
             })
             .catch(err => {
                 console.log(err)
@@ -54,6 +56,7 @@ export default function Signup({ route, navigation}) {
                     text2: 'Please try again',
                     visibilityTime: 3000,
                 })
+                setTimeout(() => {}, 2000)
             })
 
     }
@@ -68,7 +71,7 @@ export default function Signup({ route, navigation}) {
                 onSubmit={(values, actions) => {
                     console.log(values)
                     handleLogin(values)
-                    // actions.resetForm()
+                    actions.resetForm()
                 }}
             >
                 {(props) => (

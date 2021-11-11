@@ -5,7 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Signup from './screens/signup';
 import Login from './screens/login';
 import Home from './screens/home';
-
+import Users from './screens/users';
+import Comments from './screens/allComments';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export default function App() {
         initialRouteName="Login"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#fa0f2a',
+            // backgroundColor: '#fa0f2a',
           },
           headerTitleStyle: {
             fontSize: 25,
@@ -38,7 +39,17 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Home', headerShown: false }}
+          options={{ title: 'Home' }}
+        />
+        <Stack.Screen
+          name="Users"
+          component={Users}
+          options={{ title: 'Users', headerShown: true, headerTitleAlign: 'center' }}
+        />
+        <Stack.Screen
+          name="Comments"
+          component={Comments}
+          options={{ title: 'Comments', headerShown: true, headerTitleAlign: 'center' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

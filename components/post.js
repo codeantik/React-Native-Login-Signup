@@ -10,7 +10,9 @@ export default function Post({ navigation}) {
                     <Ionicons name="arrow-back" size={30} color="#fff" />
                 </TouchableOpacity>
                 <Image source={require('../assets/images/headerPost.png' )} style={{ height: 30, width: 30 }}/>
-                <Feather name="more-horizontal" size={30} color="#fff" />
+                <TouchableOpacity onPress={() => navigation.navigate('Users')}>
+                    <Feather name="more-horizontal" size={30} color="#fff" />
+                </TouchableOpacity>
             </View>
             <View style={styles.body}>
                 <Image source={require('../assets/images/mainPost.png' )} style={styles.mainPost}/>

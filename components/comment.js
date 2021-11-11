@@ -12,8 +12,10 @@ import {
     ScrollView,
 }   from 'react-native'
 import { Ionicons, Feather, FontAwesome5 } from '@expo/vector-icons'
+import axios from 'axios'
+import Toast from 'react-native-toast-message'
 
-export default function Comment() {
+export default function Comment({ navigation}) {
 
     const [comment, setComment] = useState('')
 
@@ -26,9 +28,38 @@ export default function Comment() {
         setComment(text)
     }
 
+    const postComment = async (comment) => {
+        const url = 'http://192.168.43.254:5000/users/comments'
+        await axios.post(url, {
+            comment,
+        })
+            .then(res => {
+                console.log('res', res)
+                Toast.show({
+                    type: 'success',
+                    position: 'top',
+                    text1: 'Comment Posted Successfully!',
+                    visibilityTime: 3000,
+                })
+            }).catch(err => {
+                console.log('err', err)
+                Toast.show({
+                    type: 'error',
+                    position: 'top',
+                    text1: 'Failed To Post Comment!',
+                    visibilityTime: 3000,
+                })
+            })
+    }
+
     const handleSubmit = () => {
         console.log('submit', comment)
+        postComment(comment)
         setComment('')
+    }
+
+    const handleComment = () => {
+        navigation.navigate('Comments')
     }
 
     return (
@@ -51,7 +82,9 @@ export default function Comment() {
                     <Feather name="heart" size={22} color="white" style={styles.heart}/>
                 </View>
                 <View style={styles.bottom}>
-                    <Image source={require('../assets/images/person3.png')} style={styles.img} />
+                    <TouchableOpacity onPress={handleComment} style={styles.img}>
+                        <Image source={require('../assets/images/person3.png')} />
+                    </TouchableOpacity>
                     <View style={styles.box}>
                         <TextInput 
                             multiline
@@ -65,6 +98,7 @@ export default function Comment() {
                         <Ionicons name="send-outline" size={22} color="black" />
                     </TouchableOpacity>
                 </View>
+                <Toast />
             </View>
         </TouchableWithoutFeedback>
     )
@@ -89,7 +123,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     box: {
-        flex: 4,
+        flex: 3,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -124,7 +158,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     input : {
-        flex: 1,
+        flex: 0.5,
         color: '#000',
     },
 })
